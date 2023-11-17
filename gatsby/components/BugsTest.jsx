@@ -12,7 +12,7 @@ export default function BugsTest(props) {
       }
     }
     fetchData()
-  }, [])
+  }, [data])
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.map((n, i) => {
+          {names?.forEach((n, i) => {
             return (
               <tr>
                 <td>{n?.first}</td>
@@ -68,7 +68,7 @@ export default function BugsTest(props) {
       <hr />
       <h2>Test SVG</h2>
       <div>
-        <img src="/code.svg" style={{ color: "#038cfc" }} />
+        <img src="/code.svg" />
       </div>
     </>
   )
