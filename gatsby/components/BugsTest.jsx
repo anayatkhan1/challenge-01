@@ -58,7 +58,7 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.map((n, i) => {
+          {names?.forEach((n, i) => {
             return (
               <tr
                 key={n?.first}
@@ -75,7 +75,7 @@ export default function BugsTest(props) {
       <hr />
       <h2>Test SVG</h2>
       <div>
-        <CodeSvg style={{ fill: "#038cfc" }} />
+        <CodeSvg />
       </div>
     </>
   )
