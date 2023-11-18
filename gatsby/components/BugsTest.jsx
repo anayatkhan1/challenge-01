@@ -3,21 +3,18 @@ import CodeSvg from "./CodeSvg"
 
 export default function BugsTest(props) {
   const [names, setNames] = useState([])
-  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!dataFetched) {
-        const data = await fetch("/data.json").then((response) => response.json());
-        if (data?.length) {
-          setNames(data);
-          setDataFetched(true);
-        }
-      }
-    };
+      const data = await fetch("/data.json").then(response => response.json())
 
-    fetchData();
-  }, [dataFetched]);
+      if (data?.length) {
+        setNames(data)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -58,23 +55,19 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.forEach((n, i) => {
-            return (
-              <tr
-                key={n?.first}
-              >
-                <td>{n?.first}</td>
-                <td>{n?.last}</td>
-              </tr>
-            )
-          })}
+          {names.map(name => (
+            <tr key={`${name.first}-${name.last}`}>
+              <td>{name.first}</td>
+              <td>{name.last}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <br />
       <br />
       <hr />
       <h2>Test SVG</h2>
-      <div>
+      <div style={{ fill: "#038cfc" }}>
         <CodeSvg />
       </div>
     </>
