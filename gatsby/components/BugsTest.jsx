@@ -3,21 +3,17 @@ import CodeSvg from "./CodeSvg"
 
 export default function BugsTest(props) {
   const [names, setNames] = useState([])
-  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!dataFetched) {
-        const data = await fetch("/data.json").then((response) => response.json());
-        if (data?.length) {
-          setNames(data);
-          setDataFetched(true);
-        }
+      const data = await fetch("/data.json").then((response) => response.json());
+      if (data?.length) {
+        setNames(data);
       }
     };
 
     fetchData();
-  }, [dataFetched]);
+  }, []);
 
   return (
     <>
@@ -58,7 +54,7 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.forEach((n, i) => {
+          {names?.map((n, i) => {
             return (
               <tr
                 key={n?.first}
@@ -75,7 +71,7 @@ export default function BugsTest(props) {
       <hr />
       <h2>Test SVG</h2>
       <div>
-        <CodeSvg />
+        <CodeSvg/>
       </div>
     </>
   )
