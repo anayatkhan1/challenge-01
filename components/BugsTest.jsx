@@ -6,18 +6,15 @@ export default function BugsTest(props) {
   const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (!dataFetched) {
-        const data = await fetch("/data.json").then((response) => response.json());
-        if (data?.length) {
-          setNames(data);
-          setDataFetched(true);
-        }
-      }
-    };
-
-    fetchData();
-  }, [dataFetched]);
+    if (!dataFetched) {
+      fetch("/data.json")
+        .then((res) => res.json())
+        .then((data) => {
+          setNames(data)
+          setDataFetched(true)
+        })
+    }
+  }, [dataFetched]) 
 
   return (
     <>
@@ -58,7 +55,7 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.forEach((n, i) => {
+          {names?.map((n, i) => {
             return (
               <tr
                 key={n?.first}
