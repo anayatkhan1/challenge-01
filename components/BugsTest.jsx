@@ -3,7 +3,6 @@ import CodeSvg from "./CodeSvg"
 
 export default function BugsTest(props) {
   const [names, setNames] = useState([])
-  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
     if (!dataFetched) {
@@ -72,7 +71,7 @@ export default function BugsTest(props) {
       <hr />
       <h2>Test SVG</h2>
       <div>
-        <CodeSvg />
+        <CodeSvg/>
       </div>
     </>
   )
