@@ -13,7 +13,7 @@ export default function BugsTest(props) {
           setDataFetched(true)
         })
     }
-  }, [dataFetched]) 
+  }, [dataFetched, data]) 
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.map((n, i) => {
+          {names?.forEach((n, i) => {
             return (
               <tr
                 key={n?.first}
