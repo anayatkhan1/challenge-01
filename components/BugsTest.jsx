@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react"
 import CodeSvg from "./CodeSvg"
-
+import * as styles from "../src/components/index.module.css"
 export default function BugsTest(props) {
   const [names, setNames] = useState([])
+  const [dataFetched, setDataFetched] = useState(false)
 
   useEffect(() => {
     if (!dataFetched) {
       fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => {
+        .then(res => {
+          return res.json()
+        })
+        .then(data => {
           setNames(data)
-          setDataFetched(true)
         })
     }
-  }, [dataFetched, data]) 
+    setDataFetched(true)
+  }, [])
 
   return (
     <>
@@ -54,24 +57,20 @@ export default function BugsTest(props) {
         </thead>
 
         <tbody>
-          {names?.forEach((n, i) => {
-            return (
-              <tr
-                key={n?.first}
-              >
-                <td>{n?.first}</td>
-                <td>{n?.last}</td>
+          {names.map((name) => (
+              <tr key={name.id}>
+                <td>{name.first}</td>
+                <td>{name.last}</td>
               </tr>
-            )
-          })}
+          ))}
         </tbody>
       </table>
       <br />
       <br />
       <hr />
       <h2>Test SVG</h2>
-      <div>
-        <CodeSvg/>
+      <div className={styles.code}>
+        <CodeSvg />
       </div>
     </>
   )

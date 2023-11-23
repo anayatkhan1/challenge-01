@@ -1,1 +1,5 @@
-[{"first":"alex","last":"i"},{"first":"dan","last":"m"},{"first":"mike","last":"p"}]
+[
+  { "id": 1, "first": "alex", "last": "i" },
+  { "id": 2, "first": "dan", "last": "m" },
+  { "id": 3, "first": "mike", "last": "p" }
+]
